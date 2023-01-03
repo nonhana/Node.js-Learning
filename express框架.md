@@ -591,3 +591,358 @@
    - 调用app.use()注册并使用中间件
 
    注意：express内置的express.urlencoded中间件就是基于body-parser这个第三方中间件进一步封装出来的。
+
+### 3.4 自定义中间件
+
+1. 需求描述与实现步骤
+
+   自己手动模拟一个类似于express.urlencoded这样的中间件，来解析POST提交到服务器的表单数据
+
+   实现步骤：
+
+   1. 定义中间件
+   2. 监听req的data事件
+   3. 监听req的end事件
+   4. 使用querystring模块解析请求体数据
+   5. 将解析出来的数据对象挂载为req.body
+   6. 将自定义中间件封装为模块
+
+2. 定义中间件
+
+   使用app.use()来定义全局生效的中间件，代码如下：
+
+   ```js
+   // 解析表单数据的中间件
+   app.use((req, res, next) => {
+     // 定义中间件具体的业务逻辑
+     // 1.定义一个str字符串，专门用来存储客户端发送过来的请求体数据
+     let str = ''
+     // 2.监听req的data事件，只要有数据发过来就会触发这个事件
+     req.on('data', (chunk) => {
+       str += chunk
+     })
+     // 3.监听req的end事件
+     req.on('end', () => {
+       // 在str中存放的是完整的请求体数据
+       console.log(str)
+       // TODO：把字符串格式的请求体数据，解析成对象格式
+     })
+   })
+   ```
+
+3. 监听req的data事件 
+
+   在中间件中，需要监听req对象的data事件，来获取客户端发送到服务器的数据。
+
+   如果数据量比较大，无法一次性发送完毕，则客户端会把数据切割后，分批发送到服务器。所以data事件可能会触发多次，每一次触发data事件时，获取到数据只能是完整数据的一部分，需要手动对接收到的数据进行拼接。
+
+   ```js
+   // 2.监听req的data事件，只要有数据发过来就会触发这个事件
+   req.on('data', (chunk) => {
+       str += chunk
+   })
+   ```
+
+4. 监听req的end事件
+
+   当请求体数据接收完毕之后，会自动触发req的end事件。
+
+   因此，我们可以在req的end事件中，拿到并处理完整的请求体数据。示例代码如下：
+
+   ```js
+   // 3.监听req的end事件
+   req.on('end', () => {
+       // 在str中存放的是完整的请求体数据
+       console.log(str)
+       // TODO：把字符串格式的请求体数据，解析成对象格式
+   })
+   ```
+
+5. 使用querystring模块解析请求体数据
+
+   Node.js内置了一个querystring模块，专门用来处理查询字符串。通过这个模块提供的parse()函数，可以轻松把查询字符串解析成对象的格式。示例代码如下：
+
+   ```js
+   // 导入Node.js内置的querystring模块
+   const qs = require('querystring')
+   req.on('data', (chunk) => {
+       str += chunk
+   })
+   // 3.监听req的end事件
+   req.on('end', () => {
+       // 在str中存放的是完整的请求体数据
+       // console.log(str)
+       // TODO：把字符串格式的请求体数据，解析成对象格式
+       const body = qs.parse(str)
+       console.log(body)
+   })
+   ```
+
+6. 将解析出来的数据对象挂载为req.body
+
+   **上游的中间件和下游的中间件及路由之间，共享同一份req与res。**因此，我们可以将解析出来的数据，挂载为req的自定义属性，命名为req.body供下游使用。示例代码如下：
+
+   ```js
+   req.on('end', () => {
+       // TODO：把字符串格式的请求体数据，解析成对象格式
+       const body = qs.parse(str)
+       req.body = body
+       next()
+   })
+   ```
+
+7. 将自定义中间件**封装**为模块
+
+   为了优化代码的结构，我们可以把自定义的中间件函数封装为独立的模块。示例代码如下：
+
+   ```js
+   // 导入Node.js内置的querystring模块
+   const qs = require('querystring')
+   // 定义中间件函数
+   const BodyParser = (req, res, next) => {
+     // 定义中间件具体的业务逻辑
+     // 1.定义一个str字符串，专门用来存储客户端发送过来的请求体数据
+     let str = ''
+     // 2.监听req的data事件，只要有数据发过来就会触发这个事件
+     req.on('data', (chunk) => {
+       str += chunk
+     })
+     // 3.监听req的end事件
+     req.on('end', () => {
+       // TODO：把字符串格式的请求体数据，解析成对象格式
+       const body = qs.parse(str)
+       req.body = body
+       next()
+     })
+   }
+   // 用module.exports暴露出去
+   module.exports = BodyParser
+   ```
+
+## 4. 使用express写接口
+
+### 4.1 创建基本的服务器
+
+```js
+const express = require('express')
+const app = express()
+
+app.listen(80, () => {
+  console.log('http://127.0.0.1')
+})
+```
+
+### 4.2 创建API路由模块
+
+```js
+const express = require('express')
+const router = express.Router()
+
+// 在这里挂载对应的路由
+
+// 暴露router
+module.exports = router
+```
+
+### 4.3 编写GET接口
+
+```js
+router.get('/get', (req, res) => {
+  // 通过req.query获取客户端通过查询字符串发送到服务器端的数据
+  const query = req.query
+  // 调用res.send()方法，向客户端响应处理的结果
+  res.send({
+    status: 0,//0表示成功，1表示失败
+    msg: 'GET请求成功！',//状态的描述
+    data: query//需要响应给客户端的数据
+  })
+})
+```
+
+### 4.4 编写POST接口
+
+```js
+// 定义POST接口
+router.post('/post', (req, res) => {
+  // 通过req.body获取请求体中包含的url-encoded格式的数据
+  const body = req.body
+  res.send({
+    status: 0,
+    msg: "POST请求成功！",
+    data: body
+  })
+})
+```
+
+注意：如果要获取URL-encoded格式的请求体数据，必须配置中间件app.use(express.urlencoded({extended:false}))
+
+### 4.5 CORS跨域资源共享
+
+1. 接口的跨域问题
+
+   刚才编写的GET和POST接口，存在一个很严重的问题：不支持跨域请求。
+
+   解决接口跨域的问题主要有两种：
+
+   1. CORS(主流的解决方案，**推荐使用**)
+   2. JSONP(有缺陷的解决方案，只支持GET请求)
+
+2. 使用CORS中间件解决跨域问题
+
+   cors是express的一个第三方中间件，通过安装和配置cors中间件，能够很方便的解决跨域问题。
+
+   使用步骤分为三步：
+
+   - 运行npm install cors安装中间件
+   - 使用const cors=require('cors')导入中间件
+   - 在路由之前调用app.use(cors())配置中间件
+
+3. 什么是CORS
+
+   CORS(Cross-Origin Resource Sharing，跨域资源共享)由一系列http响应头组成，**这些http响应头决定浏览器是否组织前端JS代码跨域获取资源。**
+
+   浏览器的通源安全策略默认会阻止网页"跨域"获取资源。但如果接口服务器配置了CORS相关的HTTP响应头，就可以解除浏览器端的跨域访问限制。
+
+   ![image-20230103191758354](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20230103191758354.png)
+
+4. CORS的注意事项
+
+   1. CORS**主要在服务器端配置**。客户端浏览器无需做任何额外的配置即可请求开启了CORS的接口。
+   2. CORS在浏览器中有兼容性。只有支持XMLHttpRequest Level2的浏览器才能正常访问开启了CORS的服务器端接口。(例如：IE10+，Chrome4+，FireFox3.5+)
+
+5. CORS响应头部-Access-Control-Allow-Origin
+
+   响应头部中可以携带一个Access-Control-Allow-Origin字段。其语法如下：
+
+   ```js
+   Access-Control-Allow-Origin:<origin> | *
+   ```
+
+   其中，origin参数的值指定了允许访问该资源的外域URL。
+
+   例如，下面的字段值只允许来自http://itcast.cn的请求：
+
+   ```js
+   res.setHeader("Access-Control-Allow-Origin","http://itcast.cn")
+   ```
+
+   如果指定了Access-Control-Allow-Origin字段的值为通配符*，表示允许来自任何域的请求，示例代码如下：
+
+   ```js
+   res.setHeader("Access-Control-Allow-Origin","*")
+   ```
+
+6. CORS响应头部-Access-Control-Allow-Headers
+
+   默认情况下，CORS仅支持客户端向服务器发送如下的9个请求头：
+
+   ![image-20230103192542261](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20230103192542261.png)
+
+   如果客户端向服务器发送了额外的请求头信息，则需要在服务器端通过Access-Control-Allow-Headers对额外的请求头进行声明，否则这次请求会失败！
+
+   ```js
+   res.setHeader("Access-Control-Allow-Header","Content-Type","X-Custom-Header")
+   ```
+
+7. CORS响应头部-Access-Control-Allow-Methods
+
+   默认情况下，CORS仅支持客户端发起GET、POST、HEAD请求。
+
+   如果客户端希望通过PUT、DELETE等方式请求服务器的资源，则需要在服务器端，通过Access-Control-Allow-Methods来指明实际请求所允许使用的HTTP方法。
+
+   示例代码如下：
+
+   ```js
+   res.setHeader("Access-Control-Allow-Methods","GET,POST,DELETE,HEAD")
+   res.setHeader("Access-Control-Allow-Methods","*")
+   ```
+
+8. CORS请求的分类
+
+   客户端在请求CORS接口时，根据请求方式和请求头的不同，可以将CORS的请求分为两大类：
+
+   1. 简单请求
+   2. 预检请求
+
+9. 简单请求
+
+   同时满足两大条件的请求，就属于简单请求：
+
+   ![image-20230103193301751](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20230103193301751.png)
+
+10. 预检请求
+
+    只要符合以下任何一个条件的请求，都需要进行预检请求：
+
+    1. 请求方式为**GET、POST、HEAD之外的请求Method类型**
+    2. 请求头中**包含自定义头部字段**
+    3. 向服务器**发送了application/json格式的数据**
+
+    在浏览器与服务器正式通信之前，浏览器都会先发送OPTION请求进行预检，以获知服务器是否允许该实际请求。所以这一次的OPTION请求成为预检请求。服务器成功响应预检请求后，才会发送真正的请求，并且携带真实数据。
+
+11. 简单请求与预检请求之间的区别
+
+    简单请求的特点：客户端与服务器之间只会发生一次请求。
+
+    预检请求的特点：客户端与服务器之间会发生两次请求，OPTION预检请求成功了之后，才会发起真正的请求。
+
+### 4.6 JSONP接口
+
+1. 回顾JSONP的概念与特点
+
+   概念：**浏览器端通过<script>标签的src属性，请求服务器上的数据**，同时，服务器端返回一个函数的调用。这种请求数据的方式叫做JSONP。
+
+   特点：
+
+   1. JSONP不属于真正的Ajax请求。因为它没有使用XMLHttpRequest这个对象
+   2. JSONP仅支持GET请求，不支持其他类型的请求
+
+2. 创建JSONP接口的注意事项
+
+   如果项目中已经配置了CORS跨域资源共享，为了防止冲突，必须**配置CORS中间件之前**声明JSONP的接口。否则JSONP接口会被处理成开启了CORS的接口。
+
+3. 实现JSONP接口的步骤
+   1. 获取客户端发送过来的回调函数的名字
+   2. 得到要通过JSONP形式发送给客户端的数据
+   3. 根据前两步的结果，拼接出一个函数调用的字符串
+   4. 把上一步的字符串结果，响应给客户端的<script>标签进行解析执行
+
+4. 实现JSONP接口的具体代码
+
+   ```js
+   // 必须在配置cors中间件之前配置JSONP的接口
+   app.get('/api/jsonp', (req, res) => {
+     // TODO：定义JSONP接口的具体实现过程
+     // 1.得到函数的名称
+     const funcName = req.query.callback
+     // 2.定义要发送客户端的数据对象
+     const data = {
+       name: "周想",
+       age: 20
+     }
+     // 3.拼接出一个函数的调用
+     const scriptStr = `${funcName}(${JSON.stringify(data)})`
+     // 4.把拼接出的字符串，响应给客户端
+     res.send(scriptStr)
+   })
+   ```
+
+5. 在网页中使用jQuery发起JSONP请求
+
+   调用$.ajax()函数，提供JSONP的配置选项，从而发起JSONP请求，示例代码如下：
+
+   ```js
+   // 4.为JSONP绑定点击事件处理函数
+   $('#btnJSONP').on('click', function () {
+     $.ajax({
+       type: 'GET',
+       url: "http://127.0.0.1/api/JSONP",
+       dataType: "jsonp",
+       success: function (res) {
+         console.log(res)
+       }
+     })
+   })
+   ```
+
+   

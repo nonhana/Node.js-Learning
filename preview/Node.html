@@ -1,188 +1,216 @@
 <html>
-  <head>
-	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>i5ting_ztree_toc:Node</title>
-		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
-		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
-		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
-	  <style>
-		pre {
-		    counter-reset: line-numbering;
-		    border: solid 1px #d9d9d9;
-		    border-radius: 0;
-		    background: #fff;
-		    padding: 0;
-		    line-height: 23px;
-		    margin-bottom: 30px;
-		    white-space: pre;
-		    overflow-x: auto;
-		    word-break: inherit;
-		    word-wrap: inherit;
-		}
 
-		pre a::before {
-		  content: counter(line-numbering);
-		  counter-increment: line-numbering;
-		  padding-right: 1em; /* space after numbers */
-		  width: 25px;
-		  text-align: right;
-		  opacity: 0.7;
-		  display: inline-block;
-		  color: #aaa;
-		  background: #eee;
-		  margin-right: 16px;
-		  padding: 2px 10px;
-		  font-size: 13px;
-		  -webkit-touch-callout: none;
-		  -webkit-user-select: none;
-		  -khtml-user-select: none;
-		  -moz-user-select: none;
-		  -ms-user-select: none;
-		  user-select: none;
-		}
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>i5ting_ztree_toc:</title>
+  <link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet"
+    type="text/css" />
+  <link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet"
+    type="text/css" />
+  <link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css" />
+  <style>
+    pre {
+      counter-reset: line-numbering;
+      border: solid 1px #d9d9d9;
+      border-radius: 0;
+      background: #fff;
+      padding: 0;
+      line-height: 23px;
+      margin-bottom: 30px;
+      white-space: pre;
+      overflow-x: auto;
+      word-break: inherit;
+      word-wrap: inherit;
+    }
 
-		pre a:first-of-type::before {
-		  padding-top: 10px;
-		}
+    pre a::before {
+      content: counter(line-numbering);
+      counter-increment: line-numbering;
+      padding-right: 1em;
+      /* space after numbers */
+      width: 25px;
+      text-align: right;
+      opacity: 0.7;
+      display: inline-block;
+      color: #aaa;
+      background: #eee;
+      margin-right: 16px;
+      padding: 2px 10px;
+      font-size: 13px;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
-		pre a:last-of-type::before {
-		  padding-bottom: 10px;
-		}
+    pre a:first-of-type::before {
+      padding-top: 10px;
+    }
 
-		pre a:only-of-type::before {
-		  padding: 10px;
-		}
+    pre a:last-of-type::before {
+      padding-bottom: 10px;
+    }
 
-		.highlight { background-color: #ffffcc } /* RIGHT */
-		</style>
-  </head>
-  <body>
-	  <div>
-				<div style='width:25%;'>
-						<ul id="tree" class="ztree" style='width:100%'>
+    pre a:only-of-type::before {
+      padding: 10px;
+    }
 
-						</ul>
-				</div>
-        <div id='readme' style='width:70%;margin-left:20%;'>
-          	<article class='markdown-body'>
-            	<h1 id="node-js-">Node.js学习笔记</h1>
-<h2 id="1-node-js">1. 初识Node.js</h2>
-<h3 id="1-2-node-js-">1.2 Node.js简介</h3>
-<ol>
-<li><p>什么是Node.js</p>
-<p>Node.js是一个基于Chrome V8引擎的JavaScript运行环境。(Chrome V8是解析JS最快的解析引擎)</p>
-<p>换言之，<strong>放到Node.js里面跑的JS代码就是后端开发的JS代码</strong>。</p>
-</li>
-<li><p>Node.js官网地址：<a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
-</li>
-<li>Node.js中的JavaScript运行环境</li>
-</ol>
-<p><img src="C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20221223200830889.png" alt="image-20221223200830889"></p>
-<ol start="4">
-<li><p>注意点：</p>
-<ol>
-<li>浏览器是JavaScript的<strong>前端运行环境</strong>。</li>
-<li>Node.js是JavaScript的<strong>后端运行环境</strong>。</li>
-<li>Node.js中无法调用DOM、BOM等浏览器内置API。</li>
-</ol>
-</li>
-<li><p>Node.js可以做什么</p>
-<p>Node.js作为一个JavaScript运行环境，仅仅提供了基础的功能与API。然而，基于Node.js提供的这些基础功能，很多强大的工具与框架如雨后春笋一般层出不穷。因此，学会了Node.js能使前端人员有很强大的开发能力。</p>
-<ol>
-<li>基于Express框架(<a href="http://www.expressjs.com.cn">http://www.expressjs.com.cn</a>)，能够快速构建web应用。</li>
-<li>基于Electron框架(<a href="https://electronjs.org/">https://electronjs.org/</a>)，可以构建跨平台的桌面应用。</li>
-<li>基于restify框架(<a href="http://restify.com/">http://restify.com/</a>)，可以快速构建API接口项目。(<strong>我急需的东西</strong>)</li>
-<li>读写操作数据库，创建实用的命令行工具辅助前端开发等等。</li>
-</ol>
-</li>
-<li><p>Node.js学习仅需掌握JavaScript的语法即可。</p>
-<p><strong>JavaScript基础语法 </strong>+<strong>Node.js内置API模块</strong>(fs,path,http等)+<strong>第三方API模块</strong>(express,mysql等)</p>
-</li>
-</ol>
-<h3 id="1-3-node-js-">1.3 Node.js环境的安装</h3>
-<ol>
-<li><p>什么是终端</p>
-<p>终端(Terminal)是专门为开发人员设计的，用于实现人机交互的一种方式。</p>
-<p>需要识记一些常用的终端命令。</p>
-</li>
-</ol>
-<h3 id="1-4-node-js-js-">1.4 在Node.js环境下执行JS代码</h3>
-<ol>
-<li><p>终端执行：</p>
-<ol>
-<li>打开终端；</li>
-<li>切换到要执行的文件的目录；</li>
-<li>输入：<strong>node</strong> <strong>要执行的js文件的路径</strong>；</li>
-<li>敲下回车即可执行。</li>
-</ol>
-</li>
-<li><p>终端中的快捷键：</p>
-<ol>
-<li>使用<strong>↑</strong>键，能够快速定位上一次的执行命令。</li>
-<li>使用<strong>tab</strong>键，能够快速补全文件的路径。</li>
-<li>使用<strong>esc</strong>键，能够快速清空当前已输入的命令。</li>
-<li>输入<strong>cls</strong>，能够清空终端的所有内容。</li>
-</ol>
-</li>
-</ol>
-<h2 id="2-fs-">2. fs文件系统模块</h2>
-<h3 id="2-1-fs-">2.1 什么是fs文件系统模块</h3>
-<p>fs模块是node.js官方提供的，用来操作文件的模块。它提供了一系列的方法与属性，用来满足用户对文件的操作与需求。</p>
-<p>例如：</p>
-<ul>
-<li>fs.readFile();方法用来读取指定文件当中的内容；</li>
-<li>fs.writeFile();方法用来向指定的文件中写入内容。</li>
-</ul>
-<p>如果要在JavaScript代码中使用fs模块来操作文件，需要用以下的方式来先导入它：</p>
-<pre><code class="lang-javascript">const fs = require(&#39;fs&#39;);
+    .highlight {
+      background-color: #ffffcc
+    }
+
+    /* RIGHT */
+  </style>
+</head>
+
+<body>
+  <div>
+    <div style='width:25%;'>
+      <ul id="tree" class="ztree" style='width:100%'>
+
+      </ul>
+    </div>
+    <div id='readme' style='width:70%;margin-left:20%;'>
+      <article class='markdown-body'>
+        <h1 id="node-js-">Node.js学习笔记</h1>
+        <h2 id="1-node-js">1. 初识Node.js</h2>
+        <h3 id="1-2-node-js-">1.2 Node.js简介</h3>
+        <ol>
+          <li>
+            <p>什么是Node.js</p>
+            <p>Node.js是一个基于Chrome V8引擎的JavaScript运行环境。(Chrome V8是解析JS最快的解析引擎)</p>
+            <p>换言之，<strong>放到Node.js里面跑的JS代码就是后端开发的JS代码</strong>。</p>
+          </li>
+          <li>
+            <p>Node.js官网地址：<a href="https://nodejs.org/zh-cn/">https://nodejs.org/zh-cn/</a></p>
+          </li>
+          <li>Node.js中的JavaScript运行环境</li>
+        </ol>
+        <p><img src="C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20221223200830889.png"
+            alt="image-20221223200830889"></p>
+        <ol start="4">
+          <li>
+            <p>注意点：</p>
+            <ol>
+              <li>浏览器是JavaScript的<strong>前端运行环境</strong>。</li>
+              <li>Node.js是JavaScript的<strong>后端运行环境</strong>。</li>
+              <li>Node.js中无法调用DOM、BOM等浏览器内置API。</li>
+            </ol>
+          </li>
+          <li>
+            <p>Node.js可以做什么</p>
+            <p>
+              Node.js作为一个JavaScript运行环境，仅仅提供了基础的功能与API。然而，基于Node.js提供的这些基础功能，很多强大的工具与框架如雨后春笋一般层出不穷。因此，学会了Node.js能使前端人员有很强大的开发能力。
+            </p>
+            <ol>
+              <li>基于Express框架(<a href="http://www.expressjs.com.cn">http://www.expressjs.com.cn</a>)，能够快速构建web应用。</li>
+              <li>基于Electron框架(<a href="https://electronjs.org/">https://electronjs.org/</a>)，可以构建跨平台的桌面应用。</li>
+              <li>基于restify框架(<a
+                  href="http://restify.com/">http://restify.com/</a>)，可以快速构建API接口项目。(<strong>我急需的东西</strong>)</li>
+              <li>读写操作数据库，创建实用的命令行工具辅助前端开发等等。</li>
+            </ol>
+          </li>
+          <li>
+            <p>Node.js学习仅需掌握JavaScript的语法即可。</p>
+            <p><strong>JavaScript基础语法
+              </strong>+<strong>Node.js内置API模块</strong>(fs,path,http等)+<strong>第三方API模块</strong>(express,mysql等)</p>
+          </li>
+        </ol>
+        <h3 id="1-3-node-js-">1.3 Node.js环境的安装</h3>
+        <ol>
+          <li>
+            <p>什么是终端</p>
+            <p>终端(Terminal)是专门为开发人员设计的，用于实现人机交互的一种方式。</p>
+            <p>需要识记一些常用的终端命令。</p>
+          </li>
+        </ol>
+        <h3 id="1-4-node-js-js-">1.4 在Node.js环境下执行JS代码</h3>
+        <ol>
+          <li>
+            <p>终端执行：</p>
+            <ol>
+              <li>打开终端；</li>
+              <li>切换到要执行的文件的目录；</li>
+              <li>输入：<strong>node</strong> <strong>要执行的js文件的路径</strong>；</li>
+              <li>敲下回车即可执行。</li>
+            </ol>
+          </li>
+          <li>
+            <p>终端中的快捷键：</p>
+            <ol>
+              <li>使用<strong>↑</strong>键，能够快速定位上一次的执行命令。</li>
+              <li>使用<strong>tab</strong>键，能够快速补全文件的路径。</li>
+              <li>使用<strong>esc</strong>键，能够快速清空当前已输入的命令。</li>
+              <li>输入<strong>cls</strong>，能够清空终端的所有内容。</li>
+            </ol>
+          </li>
+        </ol>
+        <h2 id="2-fs-">2. fs文件系统模块</h2>
+        <h3 id="2-1-fs-">2.1 什么是fs文件系统模块</h3>
+        <p>fs模块是node.js官方提供的，用来操作文件的模块。它提供了一系列的方法与属性，用来满足用户对文件的操作与需求。</p>
+        <p>例如：</p>
+        <ul>
+          <li>fs.readFile();方法用来读取指定文件当中的内容；</li>
+          <li>fs.writeFile();方法用来向指定的文件中写入内容。</li>
+        </ul>
+        <p>如果要在JavaScript代码中使用fs模块来操作文件，需要用以下的方式来先导入它：</p>
+        <pre><code class="lang-javascript">const fs = require(&#39;fs&#39;);
 </code></pre>
-<h3 id="2-2-">2.2 读取指定文件中的内容</h3>
-<ol>
-<li><p>fs.readFile();的语法格式</p>
-<pre><code class="lang-javascript">fs.readFile(path[,options],callback)
+        <h3 id="2-2-">2.2 读取指定文件中的内容</h3>
+        <ol>
+          <li>
+            <p>fs.readFile();的语法格式</p>
+            <pre><code class="lang-javascript">fs.readFile(path[,options],callback)
 </code></pre>
-<ul>
-<li>参数1：<strong>必选参数</strong>，字符串，表示文件的路径。</li>
-<li>参数2：可选参数，表示以什么编码格式来读取文件。</li>
-<li>参数3：<strong>必选参数</strong>，文件读取完成后，通过回调函数拿到读取的结果。</li>
-</ul>
-<p>示例代码：</p>
-<pre><code class="lang-javascript">const fs = require(&#39;fs&#39;);
+            <ul>
+              <li>参数1：<strong>必选参数</strong>，字符串，表示文件的路径。</li>
+              <li>参数2：可选参数，表示以什么编码格式来读取文件。</li>
+              <li>参数3：<strong>必选参数</strong>，文件读取完成后，通过回调函数拿到读取的结果。</li>
+            </ul>
+            <p>示例代码：</p>
+            <pre><code class="lang-javascript">const fs = require(&#39;fs&#39;);
 fs.readFile(&#39;./files/1.txt&#39;,&#39;utf8&#39;,function(err,dataStr){
     console.log(err);
     console.log(dataStr);
 })
 </code></pre>
-</li>
-<li><p>判断文件是否读取成功</p>
-<p>可以判断err是否为null，从而知晓文件读取的结果。</p>
-<p><img src="C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20221223205356201.png" alt="image-20221223205356201"></p>
-</li>
-</ol>
-<h3 id="2-3-">2.3 向指定的文件中写入内容</h3>
-<ol>
-<li><p>fs.writeFile()的语法格式</p>
-<p>使用fs.writeFile()方法，能够向指定的文件中写入内容，语法格式如下：</p>
-<pre><code class="lang-js">fs.writeFile(file,data[,options],callback);
+          </li>
+          <li>
+            <p>判断文件是否读取成功</p>
+            <p>可以判断err是否为null，从而知晓文件读取的结果。</p>
+            <p><img src="C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20221223205356201.png"
+                alt="image-20221223205356201"></p>
+          </li>
+        </ol>
+        <h3 id="2-3-">2.3 向指定的文件中写入内容</h3>
+        <ol>
+          <li>
+            <p>fs.writeFile()的语法格式</p>
+            <p>使用fs.writeFile()方法，能够向指定的文件中写入内容，语法格式如下：</p>
+            <pre><code class="lang-js">fs.writeFile(file,data[,options],callback);
 </code></pre>
-<p>参数解读：</p>
-<ul>
-<li>参数1：<strong>必选</strong>参数，需要指定一个文件路径的字符串，表示文件的存放路径(<strong>注意：只能够创建文件，不能够创建文件目录！</strong>)；</li>
-<li>参数2：<strong>必选</strong>参数，表示要写入什么内容；</li>
-<li>参数3：可选参数，表示以什么格式写入文件内容，默认值是utf8；</li>
-<li>参数4：<strong>必选</strong>参数，表示写入完成后的回调函数。</li>
-</ul>
-</li>
-<li><p>示例代码</p>
-<p>向指定的文件路径中写入文件内容：</p>
-<pre><code class="lang-js">const fs=require(&#39;fs&#39;)
+            <p>参数解读：</p>
+            <ul>
+              <li>参数1：<strong>必选</strong>参数，需要指定一个文件路径的字符串，表示文件的存放路径(<strong>注意：只能够创建文件，不能够创建文件目录！</strong>)；</li>
+              <li>参数2：<strong>必选</strong>参数，表示要写入什么内容；</li>
+              <li>参数3：可选参数，表示以什么格式写入文件内容，默认值是utf8；</li>
+              <li>参数4：<strong>必选</strong>参数，表示写入完成后的回调函数。</li>
+            </ul>
+          </li>
+          <li>
+            <p>示例代码</p>
+            <p>向指定的文件路径中写入文件内容：</p>
+            <pre><code class="lang-js">const fs=require(&#39;fs&#39;)
 fs.writeFile(&#39;./files/2.txt&#39;,&#39;Hello Node.js!&#39;,function(err){
     console.log(err);
 })
 </code></pre>
-</li>
-<li><p>判断文件是否写入成功</p>
-<pre><code class="lang-js">const fs = require(&#39;fs&#39;)
+          </li>
+          <li>
+            <p>判断文件是否写入成功</p>
+            <pre><code class="lang-js">const fs = require(&#39;fs&#39;)
 fs.writeFile(&#39;./files/3.txt&#39;, &#39;尝试写入文件!&#39;, function (err) {
   if (err) {
     return console.log(&quot;文件写入失败！&quot; + err.message);
@@ -190,51 +218,56 @@ fs.writeFile(&#39;./files/3.txt&#39;, &#39;尝试写入文件!&#39;, function (e
   console.log(&quot;文件写入成功！&quot;)
 })
 </code></pre>
-</li>
-</ol>
-<h3 id="2-4-fs-">2.4 fs模块——路径动态拼接的问题</h3>
-<p>在使用fs模块操作文件时，如果提供的操作路径是以./或../开头的相对路径时，很容易出现路径动态拼接错误的问题。</p>
-<p><strong>原因：</strong>代码在运行的时候，<strong>会以执行node命令时所处的目录，动态拼接出被操作文件的完整路径</strong>。</p>
-<p><strong>解决：</strong></p>
-<ol>
-<li><p>只需要直接提供一个完整的文件存放路径即可(<u>绝对路径</u>)</p>
-</li>
-<li><p>在需要引用的路径前面加一个__dirname(表示文件当前的所处目录，且其值<strong>不会动态变化，是固定的</strong>)</p>
-<p>示例代码：</p>
-<pre><code class="lang-js">fs.readFile(__dirname + &#39;/files/1.txt&#39;, &#39;utf8&#39;, function (err, dataStr) {
+          </li>
+        </ol>
+        <h3 id="2-4-fs-">2.4 fs模块——路径动态拼接的问题</h3>
+        <p>在使用fs模块操作文件时，如果提供的操作路径是以./或../开头的相对路径时，很容易出现路径动态拼接错误的问题。</p>
+        <p><strong>原因：</strong>代码在运行的时候，<strong>会以执行node命令时所处的目录，动态拼接出被操作文件的完整路径</strong>。</p>
+        <p><strong>解决：</strong></p>
+        <ol>
+          <li>
+            <p>只需要直接提供一个完整的文件存放路径即可(<u>绝对路径</u>)</p>
+          </li>
+          <li>
+            <p>在需要引用的路径前面加一个__dirname(表示文件当前的所处目录，且其值<strong>不会动态变化，是固定的</strong>)</p>
+            <p>示例代码：</p>
+            <pre><code class="lang-js">fs.readFile(__dirname + &#39;/files/1.txt&#39;, &#39;utf8&#39;, function (err, dataStr) {
   if (err) {
     return console.log(&quot;读取文件失败！&quot; + err.message);
   }
   console.log(&quot;读取文件成功！&quot; + dataStr)
 })
 </code></pre>
-</li>
-</ol>
-<h2 id="3-path-">3.path路径模块</h2>
-<h3 id="3-1-path-">3.1 什么是path路径模块？</h3>
-<p>path路径模块是Node.js官方提供的、<strong>用来处理路径的模块</strong>。它提供了一系列的方法与属性，用来满足用户对路径的处理需求。</p>
-<p>例如：</p>
-<ul>
-<li>path.join()方法用来<strong>将多个路径片段拼接成一个完整的路径字符串</strong></li>
-<li>path.basename()方法用来<strong>从路径字符串中将文件名解析出来</strong></li>
-</ul>
-<p>如果要在JS代码中使用path路径模块 ，需要使用如下的方式先将其进行导入：</p>
-<pre><code class="lang-js">const path=require(&#39;path&#39;);
+          </li>
+        </ol>
+        <h2 id="3-path-">3.path路径模块</h2>
+        <h3 id="3-1-path-">3.1 什么是path路径模块？</h3>
+        <p>path路径模块是Node.js官方提供的、<strong>用来处理路径的模块</strong>。它提供了一系列的方法与属性，用来满足用户对路径的处理需求。</p>
+        <p>例如：</p>
+        <ul>
+          <li>path.join()方法用来<strong>将多个路径片段拼接成一个完整的路径字符串</strong></li>
+          <li>path.basename()方法用来<strong>从路径字符串中将文件名解析出来</strong></li>
+        </ul>
+        <p>如果要在JS代码中使用path路径模块 ，需要使用如下的方式先将其进行导入：</p>
+        <pre><code class="lang-js">const path=require(&#39;path&#39;);
 </code></pre>
-<h3 id="3-2-">3.2 路径拼接</h3>
-<ol>
-<li><p>path.join()的语法格式</p>
-<p>使用path.join()方法，可以把多个路径片段拼接为完整的路径字符串，语法格式如下：</p>
-<pre><code class="lang-js">path.join([...paths]);
+        <h3 id="3-2-">3.2 路径拼接</h3>
+        <ol>
+          <li>
+            <p>path.join()的语法格式</p>
+            <p>使用path.join()方法，可以把多个路径片段拼接为完整的路径字符串，语法格式如下：</p>
+            <pre><code class="lang-js">path.join([...paths]);
 </code></pre>
-<p>参数解读：</p>
-<ul>
-<li>...paths<string>：路径片段的序列</li>
-<li>返回值：<string></li>
-</ul>
-</li>
-<li><p>path.join()的代码实例</p>
-<pre><code class="lang-js">const path = require(&#39;path&#39;);
+            <p>参数解读：</p>
+            <ul>
+              <li>...paths<string>：路径片段的序列</li>
+              <li>返回值：<string>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>path.join()的代码实例</p>
+            <pre><code class="lang-js">const path = require(&#39;path&#39;);
 const fs = require(&#39;fs&#39;);
 
 // 一个../会抵消前面的一个路径，如此处只会抵消一个/c路径
@@ -255,23 +288,25 @@ fs.readFile(path.join(__dirname, &#39;./files/1.txt&#39;), &#39;utf8&#39;, funct
   console.log(&quot;读取成功&quot;,dataStr)
 })
 </code></pre>
-</li>
-</ol>
-<h3 id="3-3-">3.3 获取路径中的文件名</h3>
-<ol>
-<li><p>path.basename()的语法格式</p>
-<p>使用path.basename()方法，可以获取路径中的最后一部分，经常通过这个方法获取文件中的路径名，语法格式如下：</p>
-<pre><code class="lang-js">path.basename(path[,ext]);
+          </li>
+        </ol>
+        <h3 id="3-3-">3.3 获取路径中的文件名</h3>
+        <ol>
+          <li>
+            <p>path.basename()的语法格式</p>
+            <p>使用path.basename()方法，可以获取路径中的最后一部分，经常通过这个方法获取文件中的路径名，语法格式如下：</p>
+            <pre><code class="lang-js">path.basename(path[,ext]);
 </code></pre>
-<p>参数解读：</p>
-<ul>
-<li>path<string><strong>必选参数</strong>，表示一个路径的字符串</li>
-<li>ext<string>可选参数，表示文件扩展名</li>
-<li>返回：<string>表示路径中的最后一部分</li>
-</ul>
-</li>
-<li><p>代码实例：</p>
-<pre><code class="lang-js">const path = require(&#39;path&#39;);
+            <p>参数解读：</p>
+            <ul>
+              <li>path<string><strong>必选参数</strong>，表示一个路径的字符串</li>
+              <li>ext<string>可选参数，表示文件扩展名</li>
+              <li>返回：<string>表示路径中的最后一部分</li>
+            </ul>
+          </li>
+          <li>
+            <p>代码实例：</p>
+            <pre><code class="lang-js">const path = require(&#39;path&#39;);
 
 // 定义文件的存放路径
 const fpath = &#39;/a/b/c/d/index.html&#39;
@@ -282,87 +317,103 @@ console.log(&quot;文件完整名&quot;, fullName)
 const nameWithoutExt = path.basename(fpath, &#39;.html&#39;);
 console.log(&quot;文件名&quot;, nameWithoutExt)
 </code></pre>
-</li>
-</ol>
-<h3 id="3-4-">3.4 获取路径中的文件扩展名</h3>
-<ol>
-<li><p>path.extname()的语法格式</p>
-<p>使用该方法，可以获取路径中的扩展名部分。</p>
-<pre><code class="lang-js">path.extname(path);
+          </li>
+        </ol>
+        <h3 id="3-4-">3.4 获取路径中的文件扩展名</h3>
+        <ol>
+          <li>
+            <p>path.extname()的语法格式</p>
+            <p>使用该方法，可以获取路径中的扩展名部分。</p>
+            <pre><code class="lang-js">path.extname(path);
 </code></pre>
-<p>参数解读：</p>
-<ul>
-<li>path<string>必选参数，表示一个路径的字符串</li>
-<li>返回：<string>返回得到的扩展名字符串</li>
-</ul>
-</li>
-<li><p>代码实例</p>
-<pre><code class="lang-js">const path = require(&#39;path&#39;);
+            <p>参数解读：</p>
+            <ul>
+              <li>path<string>必选参数，表示一个路径的字符串</li>
+              <li>返回：<string>返回得到的扩展名字符串</li>
+            </ul>
+          </li>
+          <li>
+            <p>代码实例</p>
+            <pre><code class="lang-js">const path = require(&#39;path&#39;);
 
 // 定义文件的存放路径
 const fpath = &#39;/a/b/c/d/index.html&#39;
 
 console.log(path.extname(fpath))
 </code></pre>
-</li>
-</ol>
-<h2 id="4-http-">4. http模块</h2>
-<h3 id="4-1-http-">4.1 什么是http模块？</h3>
-<ul>
-<li><p>问：什么是<strong>客户端</strong>？什么是<strong>服务器</strong>？</p>
-</li>
-<li><p>答：在网络节点中，<strong>负责消费资源的电脑</strong>叫做客户端；<strong>负责对外提供网络资源的电脑</strong>，叫做服务器。</p>
-</li>
-</ul>
-<p>http模块是Node.js官方提供的、用来创建web服务器的模块。通过http模块提供的<strong>http.createServer()</strong>方法，就能方便的把一台普通的电脑变成一台web服务器，从而实现对外提供web资源服务。</p>
-<p>如果想要创建一台web服务器，我们首先需要对其进行导入：</p>
-<pre><code class="lang-js">const http=require(&#39;http&#39;);
+          </li>
+        </ol>
+        <h2 id="4-http-">4. http模块</h2>
+        <h3 id="4-1-http-">4.1 什么是http模块？</h3>
+        <ul>
+          <li>
+            <p>问：什么是<strong>客户端</strong>？什么是<strong>服务器</strong>？</p>
+          </li>
+          <li>
+            <p>答：在网络节点中，<strong>负责消费资源的电脑</strong>叫做客户端；<strong>负责对外提供网络资源的电脑</strong>，叫做服务器。</p>
+          </li>
+        </ul>
+        <p>
+          http模块是Node.js官方提供的、用来创建web服务器的模块。通过http模块提供的<strong>http.createServer()</strong>方法，就能方便的把一台普通的电脑变成一台web服务器，从而实现对外提供web资源服务。
+        </p>
+        <p>如果想要创建一台web服务器，我们首先需要对其进行导入：</p>
+        <pre><code class="lang-js">const http=require(&#39;http&#39;);
 </code></pre>
-<h3 id="4-2-http-">4.2 进一步理解http模块的作用</h3>
-<p>服务器与普通电脑的区别在于：服务器上面安装了<strong>web服务器软件</strong>。例如：IIS、Apache等。通过这些软件的安装，就可以把一台普通的电脑变成一台web服务器。</p>
-<h3 id="4-3-">4.3 服务器相关的概念</h3>
-<ol>
-<li><p>IP地址</p>
-<p>IP地址是互联网上每台计算机的唯一地址，因此IP地址具有唯一性。如果把&quot;个人电脑&quot;比作&quot;一台电话&quot;，那么IP地址就相当于&quot;电话号码&quot;。只有在知道对方IP的情况下，才能与对应的电脑之间进行数据通信。</p>
-<p>IP地址的格式：通常用&quot;点分十进制&quot;表示成<strong>(a.b.c.d)</strong>的形式。其中，abcd均是0~255之间的十进制整数。例如：192.168.1.1</p>
-<p>注意：</p>
-<ol>
-<li>互联网上每台web服务器全都有自己的IP地址。访问IP地址相当于访问网址！</li>
-<li>本机的电脑如果被当成服务期进行使用，只用访问127.0.0.1就可访问本机的资源(仅限测试使用)</li>
-</ol>
-</li>
-<li><p>域名与域名服务器</p>
-<p>由于IP地址为一长串数字，不直观而且不便于记忆，于是人们发明了另一套字符型的地址方案，也就是域名地址。</p>
-<p>IP与域名之间是一一对应的关系，这种对应关系被存放在一种叫做<strong>域名服务器(DNS)</strong>的电脑当中。使用者只需通过好记的域名访问对应的服务器即可，对应的转换工作由域名服务器来实现。因此，域名服务器就是能<strong>提供IP地址和域名之间转换服务的服务器</strong>。</p>
-<p>注意：</p>
-<ol>
-<li>单纯使用IP地址，互联网中的电脑也能够正常工作，但是有了域名的加持，是的互联网的世界变得更加的方便。</li>
-<li>在开发测试期间，127.0.0.1也有着自己的域名，为localhost。他们都代表着我们自己的电脑，效果上无任何区别。</li>
-</ol>
-</li>
-<li><p>端口号</p>
-<p>计算机中的端口号，就好像现实生活中的门牌号一样。通过门牌号，外卖小哥能够准确的将外卖送到指定客户的手中。</p>
-<p>相同道理，在一台电脑中，可以运行成百上千个web服务。<strong>每个web服务都对应着一个唯一的端口号</strong>。客户端发送过来的网络请求，通过端口号，能够被准确的交给对应的web服务进行处理。</p>
-<p>此处的web服务可以被理解为网站的启动端口，如：localhost:8080等</p>
-<p>注意：</p>
-<ol>
-<li>每个端口号不能同时被多个web服务占用</li>
-<li>在实际应用中，URL中的80端口号可以被省略</li>
-</ol>
-</li>
-</ol>
-<h3 id="4-4-web-">4.4 创建最基本的web服务器</h3>
-<ol>
-<li><p>创建web服务器的基本步骤</p>
-<ol>
-<li>导入http模块</li>
-<li>创建web服务器实例(http.createServer())</li>
-<li>为服务器实例绑定request事件，监听客户端的请求(server.on())</li>
-<li>启动服务器(server.listen())</li>
-</ol>
-</li>
-<li><p>代码实例：</p>
-<pre><code class="lang-js">// 导入http模块
+        <h3 id="4-2-http-">4.2 进一步理解http模块的作用</h3>
+        <p>服务器与普通电脑的区别在于：服务器上面安装了<strong>web服务器软件</strong>。例如：IIS、Apache等。通过这些软件的安装，就可以把一台普通的电脑变成一台web服务器。</p>
+        <h3 id="4-3-">4.3 服务器相关的概念</h3>
+        <ol>
+          <li>
+            <p>IP地址</p>
+            <p>
+              IP地址是互联网上每台计算机的唯一地址，因此IP地址具有唯一性。如果把&quot;个人电脑&quot;比作&quot;一台电话&quot;，那么IP地址就相当于&quot;电话号码&quot;。只有在知道对方IP的情况下，才能与对应的电脑之间进行数据通信。
+            </p>
+            <p>IP地址的格式：通常用&quot;点分十进制&quot;表示成<strong>(a.b.c.d)</strong>的形式。其中，abcd均是0~255之间的十进制整数。例如：192.168.1.1</p>
+            <p>注意：</p>
+            <ol>
+              <li>互联网上每台web服务器全都有自己的IP地址。访问IP地址相当于访问网址！</li>
+              <li>本机的电脑如果被当成服务期进行使用，只用访问127.0.0.1就可访问本机的资源(仅限测试使用)</li>
+            </ol>
+          </li>
+          <li>
+            <p>域名与域名服务器</p>
+            <p>由于IP地址为一长串数字，不直观而且不便于记忆，于是人们发明了另一套字符型的地址方案，也就是域名地址。</p>
+            <p>
+              IP与域名之间是一一对应的关系，这种对应关系被存放在一种叫做<strong>域名服务器(DNS)</strong>的电脑当中。使用者只需通过好记的域名访问对应的服务器即可，对应的转换工作由域名服务器来实现。因此，域名服务器就是能<strong>提供IP地址和域名之间转换服务的服务器</strong>。
+            </p>
+            <p>注意：</p>
+            <ol>
+              <li>单纯使用IP地址，互联网中的电脑也能够正常工作，但是有了域名的加持，是的互联网的世界变得更加的方便。</li>
+              <li>在开发测试期间，127.0.0.1也有着自己的域名，为localhost。他们都代表着我们自己的电脑，效果上无任何区别。</li>
+            </ol>
+          </li>
+          <li>
+            <p>端口号</p>
+            <p>计算机中的端口号，就好像现实生活中的门牌号一样。通过门牌号，外卖小哥能够准确的将外卖送到指定客户的手中。</p>
+            <p>相同道理，在一台电脑中，可以运行成百上千个web服务。<strong>每个web服务都对应着一个唯一的端口号</strong>。客户端发送过来的网络请求，通过端口号，能够被准确的交给对应的web服务进行处理。
+            </p>
+            <p>此处的web服务可以被理解为网站的启动端口，如：localhost:8080等</p>
+            <p>注意：</p>
+            <ol>
+              <li>每个端口号不能同时被多个web服务占用</li>
+              <li>在实际应用中，URL中的80端口号可以被省略</li>
+            </ol>
+          </li>
+        </ol>
+        <h3 id="4-4-web-">4.4 创建最基本的web服务器</h3>
+        <ol>
+          <li>
+            <p>创建web服务器的基本步骤</p>
+            <ol>
+              <li>导入http模块</li>
+              <li>创建web服务器实例(http.createServer())</li>
+              <li>为服务器实例绑定request事件，监听客户端的请求(server.on())</li>
+              <li>启动服务器(server.listen())</li>
+            </ol>
+          </li>
+          <li>
+            <p>代码实例：</p>
+            <pre><code class="lang-js">// 导入http模块
 const http = require(&#39;http&#39;)
 // 创建web服务器实例(http.createServer())
 const server = http.createServer()
@@ -375,11 +426,12 @@ server.listen(80, function () {
   console.log(&quot;服务已经启动！&quot;)
 })
 </code></pre>
-</li>
-<li><p>req请求对象</p>
-<p>只要服务器接收到了客户端的请求，就会通过调用server.on()为服务器绑定的request事件处理函数。</p>
-<p>如果想要在事件处理函数中访问与客户端有关的数据或者属性，可以使用如下的方式：</p>
-<pre><code class="lang-js">const http = require(&#39;http&#39;)
+          </li>
+          <li>
+            <p>req请求对象</p>
+            <p>只要服务器接收到了客户端的请求，就会通过调用server.on()为服务器绑定的request事件处理函数。</p>
+            <p>如果想要在事件处理函数中访问与客户端有关的数据或者属性，可以使用如下的方式：</p>
+            <pre><code class="lang-js">const http = require(&#39;http&#39;)
 
 const server = http.createServer()
 // req是请求对象，包含了与客户端相关的数据与属性
@@ -396,10 +448,11 @@ server.listen(80, () =&gt; {
   console.log(&quot;服务器已经启动&quot;)
 })
 </code></pre>
-</li>
-<li><p>res响应对象</p>
-<p>在服务器的request事件处理函数中，如果想访问与服务器有关的数据或者属性，可以使用如下的方式：</p>
-<pre><code class="lang-js">const http = require(&#39;http&#39;)
+          </li>
+          <li>
+            <p>res响应对象</p>
+            <p>在服务器的request事件处理函数中，如果想访问与服务器有关的数据或者属性，可以使用如下的方式：</p>
+            <pre><code class="lang-js">const http = require(&#39;http&#39;)
 const server = http.createServer()
 server.on(&#39;request&#39;, (req, res) =&gt; {
   const url = req.url
@@ -412,10 +465,11 @@ server.listen(80, () =&gt; {
   console.log(&quot;服务器已经启动&quot;)
 })
 </code></pre>
-</li>
-<li><p>解决中文乱码问题</p>
-<p>当调用res.end()方法向客户端中发送一些中文内容的时候，会出现乱码问题。此时需要手动设置内容的编码格式：</p>
-<pre><code class="lang-js">const http = require(&#39;http&#39;)
+          </li>
+          <li>
+            <p>解决中文乱码问题</p>
+            <p>当调用res.end()方法向客户端中发送一些中文内容的时候，会出现乱码问题。此时需要手动设置内容的编码格式：</p>
+            <pre><code class="lang-js">const http = require(&#39;http&#39;)
 const server = http.createServer()
 server.on(&#39;request&#39;, (req, res) =&gt; {
   const url = req.url
@@ -431,23 +485,25 @@ server.listen(80, () =&gt; {
   console.log(&quot;服务器已经启动&quot;)
 })
 </code></pre>
-</li>
-</ol>
-<h3 id="4-5-url-html-">4.5 根据不同的url相应不同的html内容</h3>
-<ol>
-<li><p>核心实现步骤</p>
-<ol>
-<li>获取请求的url地址</li>
-<li>设置默认的响应内容为404 Not Found</li>
-<li>判断用户请求的是否为/或/index.html首页</li>
-<li>判断用户请求的是否为/about.html关于页</li>
-<li>设置Content-Type响应头防止中文乱码</li>
-<li>使用res.end()把内容响应给客户端</li>
-</ol>
-</li>
-<li><p>动态响应内容</p>
-<p>示例代码如下：</p>
-<pre><code class="lang-js">const http = require(&#39;http&#39;)
+          </li>
+        </ol>
+        <h3 id="4-5-url-html-">4.5 根据不同的url相应不同的html内容</h3>
+        <ol>
+          <li>
+            <p>核心实现步骤</p>
+            <ol>
+              <li>获取请求的url地址</li>
+              <li>设置默认的响应内容为404 Not Found</li>
+              <li>判断用户请求的是否为/或/index.html首页</li>
+              <li>判断用户请求的是否为/about.html关于页</li>
+              <li>设置Content-Type响应头防止中文乱码</li>
+              <li>使用res.end()把内容响应给客户端</li>
+            </ol>
+          </li>
+          <li>
+            <p>动态响应内容</p>
+            <p>示例代码如下：</p>
+            <pre><code class="lang-js">const http = require(&#39;http&#39;)
 const server = http.createServer()
 server.on(&#39;request&#39;, (req, res) =&gt; {
   // 获取请求的url地址
@@ -467,53 +523,61 @@ server.listen(80, () =&gt; {
   console.log(&quot;服务器已经启动：http://127.0.0.1&quot;)
 })
 </code></pre>
-</li>
-</ol>
-<h2 id="5-">5. 模块化</h2>
-<h3 id="5-1-">5.1 模块化的基本概念</h3>
-<p>模块化是指解决一个复杂问题时，自顶向下逐层把系统划分成若干模块的过程。对整个系统来说，模块式可组合，分解和更换的单元。</p>
-<p>编程领域的模块化，就是遵守固定的规则，把一个大文件拆成独立并相互依赖的多个小模块。</p>
-<p>把代码进行模块化拆分的好处：</p>
-<ol>
-<li>提高了代码的复用性</li>
-<li>提高了代码的可维护性</li>
-<li>可以实现按需加载</li>
-</ol>
-<h3 id="5-2-">5.2 模块化规范</h3>
-<p>模块化规范就是对代码进行模块化的拆分与组合时，需要遵守的那些规则。</p>
-<p>例如：</p>
-<ul>
-<li>使用什么样的语法格式来引用模块</li>
-<li>在模块中使用什么样的语法格式向外暴露成员</li>
-</ul>
-<p>模块化规范的好处：大家都遵守同样的模块化规范写代码降低了沟通的成本，极大方便了各个模块之间的相互调用。</p>
-<h3 id="5-3-node-js-">5.3 Node.js中的模块化</h3>
-<ol>
-<li>模块的分类</li>
-</ol>
-<p>​    Node.js中根据来源的不同，将模块分为了三大类：</p>
-<ul>
-<li><p>内置模块(是由Node.js官方提供的，例如fs，http，path等)</p>
-</li>
-<li><p>自定义模块(用户创建的每个js文件)</p>
-</li>
-<li><p>第三方模块(由第三方开发出来的模块，需要进行提前下载)</p>
-</li>
-<li><p>加载模块</p>
-<p>使用强大的require()方法，可以加在需要的各种模块进行使用</p>
-<p>注意：使用require()方法引入模块时，会加载一遍引入模块中的代码</p>
-</li>
-<li><p>Node.js中的函数作用域</p>
-<p>和函数作用域类似，在自定义模块中定义的变量、方法等成员，只能在当前模块内部被访问，这种模块级别的访问限制就是模块作用域</p>
-</li>
-<li><p>模块作用域的好处</p>
-<p>防止了全局变量的污染问题</p>
-</li>
-<li><p>向外共享模块作用域中的成员</p>
-<ol>
-<li><p>module对象</p>
-<p>在每个.js自定义模块中都有一个module对象，里面存储了<strong>和当前模块有关的信息</strong>。打印如下：</p>
-<pre><code class="lang-js">Module {
+          </li>
+        </ol>
+        <h2 id="5-">5. 模块化</h2>
+        <h3 id="5-1-">5.1 模块化的基本概念</h3>
+        <p>模块化是指解决一个复杂问题时，自顶向下逐层把系统划分成若干模块的过程。对整个系统来说，模块式可组合，分解和更换的单元。</p>
+        <p>编程领域的模块化，就是遵守固定的规则，把一个大文件拆成独立并相互依赖的多个小模块。</p>
+        <p>把代码进行模块化拆分的好处：</p>
+        <ol>
+          <li>提高了代码的复用性</li>
+          <li>提高了代码的可维护性</li>
+          <li>可以实现按需加载</li>
+        </ol>
+        <h3 id="5-2-">5.2 模块化规范</h3>
+        <p>模块化规范就是对代码进行模块化的拆分与组合时，需要遵守的那些规则。</p>
+        <p>例如：</p>
+        <ul>
+          <li>使用什么样的语法格式来引用模块</li>
+          <li>在模块中使用什么样的语法格式向外暴露成员</li>
+        </ul>
+        <p>模块化规范的好处：大家都遵守同样的模块化规范写代码降低了沟通的成本，极大方便了各个模块之间的相互调用。</p>
+        <h3 id="5-3-node-js-">5.3 Node.js中的模块化</h3>
+        <ol>
+          <li>模块的分类</li>
+        </ol>
+        <p>​ Node.js中根据来源的不同，将模块分为了三大类：</p>
+        <ul>
+          <li>
+            <p>内置模块(是由Node.js官方提供的，例如fs，http，path等)</p>
+          </li>
+          <li>
+            <p>自定义模块(用户创建的每个js文件)</p>
+          </li>
+          <li>
+            <p>第三方模块(由第三方开发出来的模块，需要进行提前下载)</p>
+          </li>
+          <li>
+            <p>加载模块</p>
+            <p>使用强大的require()方法，可以加在需要的各种模块进行使用</p>
+            <p>注意：使用require()方法引入模块时，会加载一遍引入模块中的代码</p>
+          </li>
+          <li>
+            <p>Node.js中的函数作用域</p>
+            <p>和函数作用域类似，在自定义模块中定义的变量、方法等成员，只能在当前模块内部被访问，这种模块级别的访问限制就是模块作用域</p>
+          </li>
+          <li>
+            <p>模块作用域的好处</p>
+            <p>防止了全局变量的污染问题</p>
+          </li>
+          <li>
+            <p>向外共享模块作用域中的成员</p>
+            <ol>
+              <li>
+                <p>module对象</p>
+                <p>在每个.js自定义模块中都有一个module对象，里面存储了<strong>和当前模块有关的信息</strong>。打印如下：</p>
+                <pre><code class="lang-js">Module {
   id: &#39;.&#39;,
   path: &#39;C:\\Users\\ASUS\\Desktop\\编程练习\\Node.js学习\\code&#39;,
   exports: {},
@@ -531,194 +595,382 @@ server.listen(80, () =&gt; {
   ]
 }
 </code></pre>
-</li>
-<li><p>module.exports对象</p>
-<p>在自定义模块中，可以使用module.exports对象，将模块内的成员共享出去，以供使用。</p>
-<p>外界用require()方法导入自定义模块时，得到的就是module.exports所指向的对象。</p>
-</li>
-<li><p>共享成员时的注意点</p>
-<p>使用require()方法导入模块时，导入的结果永远以module.exports指向的对象为准。</p>
-</li>
-<li><p>exports对象</p>
-<p>由于module.exports单词写起来复杂，为了简化向外共享成员的代码，Node提供了exports对象。默认情况下，exports和module.exports指向的是同一个对象。最终共享的结果，还是以module.exports指向的对象为准。</p>
-</li>
-<li><p>exports和module.exports的使用误区</p>
-<p>时刻谨记，require()模块时，得到的<strong>永远是module.exports所指向的对象</strong>。</p>
-<p>即使exports指向的还是原来的对象，module.exports进行重新赋值后还是返回重新赋值的对象。</p>
-<p>为了防止混乱，最好在同一个模块中不要同时使用exports和module.exports。</p>
-</li>
-</ol>
-</li>
-<li><p>Node.js中的模块化规范</p>
-<p>Node.js遵循了CommonJS模块化规范，CommonJS规定了模块的特性和各模块之间如何相互依赖。</p>
-<p>CommonJS规定：</p>
-<ul>
-<li>每个模块内部，module变量代表当前模块。</li>
-<li>module变量是一个对象。它的exports属性(即module.exports)是对外的接口。</li>
-<li>加载某个模块，其实是加载该模块的modile.exports属性。require()方法用于加载模块。</li>
-</ul>
-</li>
-</ul>
-<h3 id="5-4-npm-">5.4 npm与包</h3>
-<ol>
-<li><p>包</p>
-<ol>
-<li><p>什么是包？</p>
-<p>Node.js中的第三方模块又叫做包。</p>
-</li>
-<li><p>包的来源</p>
-<p>不同于Node.js中的内置模块与自定义模块，包是由第三方个人或团队进行开发的，免费且开源。</p>
-</li>
-<li><p>为什么需要包</p>
-<p>由于Node.js的内置模块仅提供了一些底层的API，导致在基于内置模块进行项目开发时，效率很低。</p>
-<p>包是基于内置模块封装出来的，提供了更高级、更方便的API，极大的提高了开发效率。</p>
-<p>包和内置模块之间的关系，类似于jQuery和浏览器内置API之间的关系。</p>
-</li>
-<li><p>从<a href="https://www.npmjs.com">https://www.npmjs.com</a>网站上搜索自己所需要的包</p>
-<p>从<a href="https://registry.npmjs.org">https://registry.npmjs.org</a>服务器上下载自己所需要的包</p>
-</li>
-<li><p>如何下载包</p>
-<p>npm,Inc.公司提供了一个包管理工具。通过这个工具，能够从<a href="https://registry.npmjs.org服务器上下载到需要的包到本地。">https://registry.npmjs.org服务器上下载到需要的包到本地。</a></p>
-<p>这个包管理工具叫做<strong>Node Package Manager(npm)</strong>，这个包管理工具随着Node.js的安装一并被安装了。</p>
-</li>
-</ol>
-</li>
-<li><p>初次装包后多了哪些文件？</p>
-<p>初次装包完成后，项目文件夹下面多了一个叫做node_modules的文件夹和package-lock.json的配置文件。</p>
-<p>其中：</p>
-<ul>
-<li>node_modules文件夹用来存放所有已安装到项目中的包。require()导入第三方包时，就是从这个目录中查找并加载包。</li>
-<li>package-lock.json配置文件用来记录node_modules目录下每一个包的下载信息。</li>
-</ul>
-</li>
-<li><p>安装指定版本的包</p>
-<p>默认情况下，使用npm install命令安装包的时候，会自动安装最新版本的包。如果需要安装指定版本的包，可以在包名之后通过@符号指定具体的版本。例如：</p>
-<pre><code class="lang-js">npm install moment@2.22.2
+              </li>
+              <li>
+                <p>module.exports对象</p>
+                <p>在自定义模块中，可以使用module.exports对象，将模块内的成员共享出去，以供使用。</p>
+                <p>外界用require()方法导入自定义模块时，得到的就是module.exports所指向的对象。</p>
+              </li>
+              <li>
+                <p>共享成员时的注意点</p>
+                <p>使用require()方法导入模块时，导入的结果永远以module.exports指向的对象为准。</p>
+              </li>
+              <li>
+                <p>exports对象</p>
+                <p>
+                  由于module.exports单词写起来复杂，为了简化向外共享成员的代码，Node提供了exports对象。默认情况下，exports和module.exports指向的是同一个对象。最终共享的结果，还是以module.exports指向的对象为准。
+                </p>
+              </li>
+              <li>
+                <p>exports和module.exports的使用误区</p>
+                <p>时刻谨记，require()模块时，得到的<strong>永远是module.exports所指向的对象</strong>。</p>
+                <p>即使exports指向的还是原来的对象，module.exports进行重新赋值后还是返回重新赋值的对象。</p>
+                <p>为了防止混乱，最好在同一个模块中不要同时使用exports和module.exports。</p>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <p>Node.js中的模块化规范</p>
+            <p>Node.js遵循了CommonJS模块化规范，CommonJS规定了模块的特性和各模块之间如何相互依赖。</p>
+            <p>CommonJS规定：</p>
+            <ul>
+              <li>每个模块内部，module变量代表当前模块。</li>
+              <li>module变量是一个对象。它的exports属性(即module.exports)是对外的接口。</li>
+              <li>加载某个模块，其实是加载该模块的modile.exports属性。require()方法用于加载模块。</li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="5-4-npm-">5.4 npm与包</h3>
+        <ol>
+          <li>
+            <p>包</p>
+            <ol>
+              <li>
+                <p>什么是包？</p>
+                <p>Node.js中的第三方模块又叫做包。</p>
+              </li>
+              <li>
+                <p>包的来源</p>
+                <p>不同于Node.js中的内置模块与自定义模块，包是由第三方个人或团队进行开发的，免费且开源。</p>
+              </li>
+              <li>
+                <p>为什么需要包</p>
+                <p>由于Node.js的内置模块仅提供了一些底层的API，导致在基于内置模块进行项目开发时，效率很低。</p>
+                <p>包是基于内置模块封装出来的，提供了更高级、更方便的API，极大的提高了开发效率。</p>
+                <p>包和内置模块之间的关系，类似于jQuery和浏览器内置API之间的关系。</p>
+              </li>
+              <li>
+                <p>从<a href="https://www.npmjs.com">https://www.npmjs.com</a>网站上搜索自己所需要的包</p>
+                <p>从<a href="https://registry.npmjs.org">https://registry.npmjs.org</a>服务器上下载自己所需要的包</p>
+              </li>
+              <li>
+                <p>如何下载包</p>
+                <p>npm,Inc.公司提供了一个包管理工具。通过这个工具，能够从<a
+                    href="https://registry.npmjs.org服务器上下载到需要的包到本地。">https://registry.npmjs.org服务器上下载到需要的包到本地。</a></p>
+                <p>这个包管理工具叫做<strong>Node Package Manager(npm)</strong>，这个包管理工具随着Node.js的安装一并被安装了。</p>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <p>初次装包后多了哪些文件？</p>
+            <p>初次装包完成后，项目文件夹下面多了一个叫做node_modules的文件夹和package-lock.json的配置文件。</p>
+            <p>其中：</p>
+            <ul>
+              <li>node_modules文件夹用来存放所有已安装到项目中的包。require()导入第三方包时，就是从这个目录中查找并加载包。</li>
+              <li>package-lock.json配置文件用来记录node_modules目录下每一个包的下载信息。</li>
+            </ul>
+          </li>
+          <li>
+            <p>安装指定版本的包</p>
+            <p>默认情况下，使用npm install命令安装包的时候，会自动安装最新版本的包。如果需要安装指定版本的包，可以在包名之后通过@符号指定具体的版本。例如：</p>
+            <pre><code class="lang-js">npm install moment@2.22.2
 </code></pre>
-</li>
-<li><p>包的语义化版本规范</p>
-<p>包的版本号是以&quot;点分十进制&quot;形式进行定义的，总共有三位数字，例如：2.24.0</p>
-<p>每一位数字所代表的含义如下：</p>
-<ul>
-<li>第一位数字：大版本</li>
-<li>第二位数字：功能版本</li>
-<li>第三位数字：bug修复版本</li>
-</ul>
-<p>版本号提升规则：只要前面的版本号增长了，后面的版本号就归零。</p>
-</li>
-<li><p>包管理配置文件</p>
-<ol>
-<li><p>npm规定，在项目目录中，必须提供一个叫做package.json的包管理配置文件，用来记录与项目有关的一些配置信息。例如：</p>
-<ul>
-<li><p>项目的名称、版本号、描述等</p>
-</li>
-<li><p>项目中都用到了哪些包</p>
-</li>
-<li><p>哪些包只在开发期间会用到</p>
-</li>
-<li><p>哪些包在开发和部署时需要用到</p>
-</li>
-</ul>
-</li>
-<li><p>多人协作的问题</p>
-<p>遇到的问题：第三方包的体积过大，不方便团队成员之间共享项目源代码。</p>
-<p>解决方案：在共享时剔除node_modules</p>
-<p>注意：今后在项目开发中，一定要把node_modules文件夹添加到.gitignore忽略文件中。</p>
-</li>
-<li><p>如何记录项目中安装了哪些包</p>
-<p>在项目根目录中，创建一个叫做package.json的配置文件，即可用来记录项目中安装了哪些包。从而方便剔除node_modules目录之后，在团队成员之间共享项目的源代码。</p>
-</li>
-<li><p>快速创建package.json</p>
-<p>npm包管理工具提供了一个快捷命令，可以在执行命令时所处的目录中，快速创建package.json这个包管理配置文件：</p>
-<pre><code class="lang-js">npm init -y
+          </li>
+          <li>
+            <p>包的语义化版本规范</p>
+            <p>包的版本号是以&quot;点分十进制&quot;形式进行定义的，总共有三位数字，例如：2.24.0</p>
+            <p>每一位数字所代表的含义如下：</p>
+            <ul>
+              <li>第一位数字：大版本</li>
+              <li>第二位数字：功能版本</li>
+              <li>第三位数字：bug修复版本</li>
+            </ul>
+            <p>版本号提升规则：只要前面的版本号增长了，后面的版本号就归零。</p>
+          </li>
+          <li>
+            <p>包管理配置文件</p>
+            <ol>
+              <li>
+                <p>npm规定，在项目目录中，必须提供一个叫做package.json的包管理配置文件，用来记录与项目有关的一些配置信息。例如：</p>
+                <ul>
+                  <li>
+                    <p>项目的名称、版本号、描述等</p>
+                  </li>
+                  <li>
+                    <p>项目中都用到了哪些包</p>
+                  </li>
+                  <li>
+                    <p>哪些包只在开发期间会用到</p>
+                  </li>
+                  <li>
+                    <p>哪些包在开发和部署时需要用到</p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>多人协作的问题</p>
+                <p>遇到的问题：第三方包的体积过大，不方便团队成员之间共享项目源代码。</p>
+                <p>解决方案：在共享时剔除node_modules</p>
+                <p>注意：今后在项目开发中，一定要把node_modules文件夹添加到.gitignore忽略文件中。</p>
+              </li>
+              <li>
+                <p>如何记录项目中安装了哪些包</p>
+                <p>在项目根目录中，创建一个叫做package.json的配置文件，即可用来记录项目中安装了哪些包。从而方便剔除node_modules目录之后，在团队成员之间共享项目的源代码。</p>
+              </li>
+              <li>
+                <p>快速创建package.json</p>
+                <p>npm包管理工具提供了一个快捷命令，可以在执行命令时所处的目录中，快速创建package.json这个包管理配置文件：</p>
+                <pre><code class="lang-js">npm init -y
 </code></pre>
-<p>注意：</p>
-<ul>
-<li>上述命令只能在英文的目录下成功运行！所以，项目文件夹的名称一定要使用英文命名，不能够使用中文不能够出现空格。</li>
-<li>运行npm install命令安装包的时候，npm包管理工具自动把包名称和版本号记录到package.json中。</li>
-</ul>
-</li>
-<li><p>dependencies节点</p>
-<p>package.json文件中，有一个dependencies节点，专门用来记录使用npm install命令安装了哪些包</p>
-</li>
-<li><p>一次性安装所有的包</p>
-<p>当我们拿到了一个剔除了node_modules的项目之后，需要把所有的包下载到项目中，才能够将项目运行起来。</p>
-<p>因此，可以运行npm install命令一次性安装所有的依赖包。</p>
-<p>执行npm install命令时，npm包管理工具会优先读取package.json中的dependencies节点，读取到记录的所有依赖包名称和版本号之后，npm包管理工具会一次性将这些包下载到node_modules当中</p>
-</li>
-<li><p>卸载包</p>
-<p>可以运行&quot;npm uninstall 具体包名&quot;命令，来卸载指定的包：</p>
-<pre><code class="lang-js">npm uninstall moment
+                <p>注意：</p>
+                <ul>
+                  <li>上述命令只能在英文的目录下成功运行！所以，项目文件夹的名称一定要使用英文命名，不能够使用中文不能够出现空格。</li>
+                  <li>运行npm install命令安装包的时候，npm包管理工具自动把包名称和版本号记录到package.json中。</li>
+                </ul>
+              </li>
+              <li>
+                <p>dependencies节点</p>
+                <p>package.json文件中，有一个dependencies节点，专门用来记录使用npm install命令安装了哪些包</p>
+              </li>
+              <li>
+                <p>一次性安装所有的包</p>
+                <p>当我们拿到了一个剔除了node_modules的项目之后，需要把所有的包下载到项目中，才能够将项目运行起来。</p>
+                <p>因此，可以运行npm install命令一次性安装所有的依赖包。</p>
+                <p>执行npm
+                  install命令时，npm包管理工具会优先读取package.json中的dependencies节点，读取到记录的所有依赖包名称和版本号之后，npm包管理工具会一次性将这些包下载到node_modules当中
+                </p>
+              </li>
+              <li>
+                <p>卸载包</p>
+                <p>可以运行&quot;npm uninstall 具体包名&quot;命令，来卸载指定的包：</p>
+                <pre><code class="lang-js">npm uninstall moment
 </code></pre>
-<p>注意：npm uninstall命令执行成功之后，会把卸载的包自动从package.json的dependencies中移除掉。</p>
-</li>
-<li><p>devDependencies节点</p>
-<p>如果某些包只在项目开发阶段用到，在项目正式上线之后就用不到了，则建议将这些包记录到devDependencies节点当中。</p>
-<p>如果某些宝在开发和项目上线之后都会用到，则建议将这些包记录到dependencies节点当中。</p>
-<p>记录到devDependencies节点当中的命令如下：</p>
-<pre><code class="lang-js">// 安装指定的包并记录到devDependencies节点中
+                <p>注意：npm uninstall命令执行成功之后，会把卸载的包自动从package.json的dependencies中移除掉。</p>
+              </li>
+              <li>
+                <p>devDependencies节点</p>
+                <p>如果某些包只在项目开发阶段用到，在项目正式上线之后就用不到了，则建议将这些包记录到devDependencies节点当中。</p>
+                <p>如果某些宝在开发和项目上线之后都会用到，则建议将这些包记录到dependencies节点当中。</p>
+                <p>记录到devDependencies节点当中的命令如下：</p>
+                <pre><code class="lang-js">// 安装指定的包并记录到devDependencies节点中
 npm i 包名 -D
 // ↑ 等价于 ↓
 npm install 包名 --save-dev
 </code></pre>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="5-5-">5.5 包的分类</h3>
-<p>使用npm包管理工具下载的包总共可以分为两大类，分别是：</p>
-<ul>
-<li>项目包</li>
-<li><p>全局包</p>
-</li>
-<li><p>项目包</p>
-<p>那些被安装到项目的node_modules目录中的包，都是项目包。</p>
-<p>项目包又分为两类，分别是：</p>
-<ul>
-<li>开发依赖包，被记录到devDependencies节点，只在开发期间会被用到</li>
-<li>核心依赖包，被记录到dependencies节点，在开发期间和项目上线之后都会用得到</li>
-</ul>
-</li>
-<li><p>全局包</p>
-<p>在执行npm install命令时，如果提供了-g参数，则会把包安装为全局包。</p>
-<p>全局包会被安装到C:\Users\用户目录\AppData\Roaming\npm\node_modules目录下。</p>
-<pre><code class="lang-js">npm i 包名 -g
+              </li>
+            </ol>
+          </li>
+        </ol>
+        <h3 id="5-5-">5.5 包的分类</h3>
+        <p>使用npm包管理工具下载的包总共可以分为两大类，分别是：</p>
+        <ul>
+          <li>项目包</li>
+          <li>
+            <p>全局包</p>
+          </li>
+          <li>
+            <p>项目包</p>
+            <p>那些被安装到项目的node_modules目录中的包，都是项目包。</p>
+            <p>项目包又分为两类，分别是：</p>
+            <ul>
+              <li>开发依赖包，被记录到devDependencies节点，只在开发期间会被用到</li>
+              <li>核心依赖包，被记录到dependencies节点，在开发期间和项目上线之后都会用得到</li>
+            </ul>
+          </li>
+          <li>
+            <p>全局包</p>
+            <p>在执行npm install命令时，如果提供了-g参数，则会把包安装为全局包。</p>
+            <p>全局包会被安装到C:\Users\用户目录\AppData\Roaming\npm\node_modules目录下。</p>
+            <pre><code class="lang-js">npm i 包名 -g
 npm uninstall 包名 -g
 </code></pre>
-<p>注意：</p>
-<ul>
-<li>只有工具性质的包才有全局安装的必要性。因为他们提供了好用的终端命令。</li>
-<li>判断某个包是否需要全局安装才能够进行使用，<strong>参考官方提供的使用说明</strong>即可。</li>
-</ul>
-</li>
-<li><p>i5ting_toc</p>
-<p>i5ting_toc是一个可以把md文档(markdown)转换成html页面的小工具，使用步骤如下：</p>
-<pre><code class="lang-js">// 将i5ting_toc安装为全局包
+            <p>注意：</p>
+            <ul>
+              <li>只有工具性质的包才有全局安装的必要性。因为他们提供了好用的终端命令。</li>
+              <li>判断某个包是否需要全局安装才能够进行使用，<strong>参考官方提供的使用说明</strong>即可。</li>
+            </ul>
+          </li>
+          <li>
+            <p>i5ting_toc</p>
+            <p>i5ting_toc是一个可以把md文档(markdown)转换成html页面的小工具，使用步骤如下：</p>
+            <pre><code class="lang-js">// 将i5ting_toc安装为全局包
 npm install -g i5ting_toc
 // 调用i5ting_toc，轻松实现md转html的功能
 i5ting_toc -f 要转换的md文件路径 -o
 </code></pre>
-</li>
-</ul>
+          </li>
+        </ul>
+        <h3 id="5-6-">5.6 规范的包的结构</h3>
+        <p>在清楚了包的概念以及如何下载和使用包之后，接下来，我们深入了解一下包的内部结构。</p>
+        <p>一个规范的包，它的组成结构，必须符合以下3点要求：</p>
+        <ol>
+          <li>包必须以单独的目录而存在！</li>
+          <li>包的顶级目录下必须得包含名为package.json的配置文件。</li>
+          <li>
+            package.json中必须包含<strong>name</strong>，<strong>version</strong>，<strong>main</strong>这三个属性，分别代表包的名字，版本号，包的入口。
+          </li>
+        </ol>
+        <p>以上三点是一个规范的包结构所必须遵守的格式。关于更多的约束，可以参考如下网址：</p>
+        <p><a href="https://yarnpkg.com/zh-Hans/docs/package.json">https://yarnpkg.com/zh-Hans/docs/package.json</a></p>
+        <h3 id="5-7-">5.7 开发属于自己的包</h3>
+        <ol>
+          <li>
+            <p>需要实现的功能</p>
+            <ul>
+              <li>格式化日期</li>
+              <li>转义html中的特殊字符</li>
+              <li>还原html中的特殊字符</li>
+            </ul>
+          </li>
+          <li>
+            <p>初始化包的基本结构</p>
+            <ol>
+              <li>在itheima-tools文件夹中，新建如下三个文件：<ul>
+                  <li>package.json(包管理配置文件)</li>
+                  <li>index.js(包的入口文件)</li>
+                  <li>README.md(包的说明文档)</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <p>初始化package.json</p>
+            <pre><code class="lang-json">{
+  &quot;name&quot;: &quot;itheima-tools&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;description&quot;: &quot;提供了格式化时间，HTMLEscape等功能&quot;,
+  &quot;keywords&quot;: [
+    &quot;itheima&quot;,
+    &quot;HTML&quot;,
+    &quot;dateFormat&quot;
+  ],
+  &quot;license&quot;: &quot;ISC&quot;
+}
+</code></pre>
+          </li>
+          <li>
+            <p>在index.js中定义实现上述功能的方法并加以暴露</p>
+            <pre><code class="lang-js">// 这是包的入口文件
 
-          	</article>
-        </div>
-		</div>
-  </body>
+// 定义格式化时间的函数
+function dateFormat(dateStr) {
+  const dt = new Date(dateStr)
+
+  const y = dt.getFullYear()
+  const m = padZero(dt.getMonth() + 1)
+  const d = padZero(dt.getDate())
+
+  const hh = padZero(dt.getHours())
+  const mm = padZero(dt.getMinutes())
+  const ss = padZero(dt.getSeconds())
+
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+}
+
+// 定义一个补零的函数
+function padZero(n) {
+  return n &gt; 9 ? n : &#39;0&#39; + n
+}
+
+// 定义转义html字符的函数
+function htmlEscape(htmlStr) {
+  return htmlStr.replace(/&lt;|&gt;|&quot;|&amp;/g, (match) =&gt; {
+    switch (match) {
+      case &#39;&lt;&#39;: return &#39;&amp;lt;&#39;
+      case &#39;&gt;&#39;: return &#39;&amp;gt;&#39;
+      case &#39;&quot;&#39;: return &#39;&amp;quot;&#39;
+      case &#39;&amp;&#39;: return &#39;&amp;amp;&#39;
+    }
+  })
+}
+
+// 定义还原html字符的函数
+function htmlUnescape(str) {
+  return str.replace(/&amp;lt;|&amp;gt;|&amp;quot;|&amp;amp;/g, (match) =&gt; {
+    switch (match) {
+      case &#39;&amp;lt;&#39;: return &#39;&lt;&#39;
+      case &#39;&amp;gt;&#39;: return &#39;&gt;&#39;
+      case &#39;&amp;quot;&#39;: return &#39;&quot;&#39;
+      case &#39;&amp;amp;&#39;: return &#39;&amp;&#39;
+    }
+  })
+}
+
+// 向外暴露需要的成员
+module.exports = {
+  dateFormat,
+  htmlEscape,
+  htmlUnescape
+}
+</code></pre>
+          </li>
+          <li>
+            <p>将不同的功能进行模块化拆分</p>
+            <ol>
+              <li>将格式化时间的功能拆分到src-&gt;dateFormat.js中</li>
+              <li>将处理HTML字符的功能，拆分到src-&gt;htmlEscape.js中</li>
+              <li>在index.js中，导入两个模块，得到需要向外共享的方法</li>
+              <li>在index.js中，使用module.exports把对应的方法共享出去</li>
+            </ol>
+          </li>
+          <li>
+            <p>编写README.md文档</p>
+            <p>用markdown语法编写一套关于自己的包的使用说明。</p>
+          </li>
+          <li>
+            <p>进行发布(具体的参考网上的发布教程)</p>
+          </li>
+        </ol>
+        <h2 id="6-">6. 模块的加载机制</h2>
+        <h3 id="6-1-">6.1 优先从缓存中加载</h3>
+        <p>模块会在第一次加载后被缓存，这也意味着多次调用require()不会导致模块的代码被执行多次。</p>
+        <p>注意：无论是内置模块、用户自定义模块还是第三方模块，他们都会优先从缓存中加载，从而提高模块的加载效率。</p>
+        <h3 id="6-2-">6.2 内置模块的加载机制</h3>
+        <p>内置模块是由Node.js官方提供的模块，内置模块的加载优先级最高。</p>
+        <p>例如，<strong>require(&#39;fs&#39;)始终返回的是内置的fs模块</strong>，即使在node_modules目录下有名字相同的包也叫作fs。</p>
+        <h3 id="6-3-">6.3 自定义模块的加载机制</h3>
+        <p>
+          使用require()加载自定义模块时，<strong>必须指定以./或../开头的路径标识符</strong>。在加载自定义模块时，如果没有指定./或../这样的路径标识符，node会把它当做内置模块或者第三方模块来进行加载。
+        </p>
+        <p>同时，在使用require()导入自定义模块时，如果省略了文件的扩展名，则Node.js会按顺序分别尝试以下的加载方式：</p>
+        <ol>
+          <li>按照确切的文件名进行加载</li>
+          <li>补全.js后缀名进行加载</li>
+          <li>补全.json后缀名进行加载</li>
+          <li>补全.node后缀名进行加载</li>
+          <li>上述都加载失败，终端报错提示</li>
+        </ol>
+        <h3 id="6-4-">6.4 第三方模块的加载机制</h3>
+        <p>如果传递给require()的模块标识符不是一个内置模块，也没有以./或../开头，则Node.js会从当前模块的父目录开始，尝试从/node_modules文件夹中加载第三方模块。</p>
+        <p>如果没有找到对应的第三方模块，则移动到再上一层的父目录中进行加载，直到文件系统的根目录。</p>
+        <h3 id="6-5-">6.5 目录作为模块</h3>
+        <p>当把目录作为模块标识符传递给require()进行加载时，有三种加载方式：</p>
+        <ol>
+          <li>在被加载的目录下查找package.json文件并寻找其main属性，作为require()加载的入口</li>
+          <li>如果目录里面没有package.json文件，或者main如果不存在或无法解析，则会试图加载目录下的index.js文件</li>
+          <li>如果上述两步都失败了，则Node.js会在终端输出错误信息</li>
+        </ol>
+
+      </article>
+    </div>
+  </div>
+</body>
+
 </html>
 <script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript" src="toc/js/ztree_toc.js"></script>
 <script type="text/javascript" src="toc_conf.js"></script>
 
-<SCRIPT type="text/javascript" >
-<!--
-$(document).ready(function(){
-    var css_conf = eval(markdown_panel_style);
-    $('#readme').css(css_conf)
-    
-    var conf = eval(jquery_ztree_toc_opts);
-		$('#tree').ztree_toc(conf);
-});
-//-->
+<SCRIPT type="text/javascript">
+  < !-
+    $(document).ready(function () {
+      var css_conf = eval(markdown_panel_style);
+      $('#readme').css(css_conf)
+
+      var conf = eval(jquery_ztree_toc_opts);
+      $('#tree').ztree_toc(conf);
+    });
+  //-->
 </SCRIPT>
