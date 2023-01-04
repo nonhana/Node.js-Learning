@@ -15,7 +15,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jquery": "^3.6.3",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "webpack": "^5.75.0"

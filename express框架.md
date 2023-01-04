@@ -937,6 +937,7 @@ router.post('/post', (req, res) => {
      $.ajax({
        type: 'GET',
        url: "http://127.0.0.1/api/JSONP",
+       //调用JSONP请求时，一定要写上dataType: "jsonp"来标识这是JSONP请求
        dataType: "jsonp",
        success: function (res) {
          console.log(res)
@@ -944,5 +945,5 @@ router.post('/post', (req, res) => {
      })
    })
    ```
-
+   
    
