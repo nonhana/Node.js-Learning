@@ -56,7 +56,7 @@
 - MySQL Server：专门用来提供数据存储和服务的软件。
 - MySQL Workbench：可视化的MySQL管理工具，通过它可以很方便的操作存储在MySQL Server中的数据。
 
-ps：由于我之前已经装了这两个东西而且已经进行过相应的使用了，这边就不写怎么具体安装了，反正网上教程一查一大把。
+ps：由于我之前已经装了这两个东西而且已经进行过相应的使用了，这边就不写怎么具体安装了，反正网上教程一查一大把；而且由于有关于SQL语句的知识我已经掌握的十分完善了(学校里面有专门的开SQL的课)，因此此处不再赘述有关于SQL语句的基本知识。
 
 ## 3. 在项目中操作MySQL
 
@@ -245,4 +245,186 @@ ps：由于我之前已经装了这两个东西而且已经进行过相应的使
    })
    ```
 
+
+## 4. 前后端的身份认证
+
+### 4.1 Web开发模式
+
+目前主流的Web开发模式有两种，分别是：
+
+1. 基于服务端渲染的传统Web开发模式
+2. 基于前后端分离的新型Web开发模式
+
+1. 服务端渲染的传统Web开发模式
+
+   概念：服务器发送给HTML页面，是在服务器通过字符串的拼接，动态生成的。因此，客户端不需要使用Ajax这样的技术来额外的请求数据。
+
+2. 服务端渲染的传统Web开发模式的优点
+   - 前端耗时少。因为服务器端直接负责动态HTML页面的生成，浏览器只需要负责渲染页面即可。
+   - 有利于SEO。因为服务端响应完整的HTML页面内容，所以爬虫更方便的爬取信息，更有利于SEO。
+3. 服务端渲染的传统Web开发模式的缺点
+   - 占用服务器端资源。即服务器端完成HTML页面内容的拼接，如果请求较多，会对服务器造成一定的压力。
+   - 不利于前后端分离，开发效率低下。服务器端渲染则会导致前后端无法分工合作，尤其是对于前端复杂度高的项目，非常的难以开发。
+
+4. 基于前后端分离的新型Web开发模式
+
+   前后端分离的概念：前后端分离的开发模式，依赖于Ajax技术的广泛应用。简而言之，前后端分离的Web开发模式就是**后端负责提供API接口，前端通过Ajax调用接口**的开发模式。
+
+5. 基于前后端分离的新型Web开发模式的优点
+   - 开发体验好。前端专注于UI页面的开发，后端专注于api的开发。
+   - 用户体验好。Ajax可以轻松实现页面的局部刷新。
+   - 减轻了服务器端的渲染压力。因为页面最终是在用户的浏览器中生成的。
+6. 基于前后端分离的新型Web开发模式的缺点
+   - 不利于SEO。因为完整的HTML页面需要在客户端拼接完成，所以爬虫无法爬取页面的有效信息。(解决方案：**利用Vue、React等前端框架的SSR技术能够很好的解决SEO问题！**)
+
+### 4.2 身份认证
+
+1. 什么是身份认证
+
+   身份认证(Authentication)又称"身份验证"、"鉴权"，是指**通过一系列的手段，完成对用户身份的确认。**
+
+2. 为什么需要身份认证
+
+   身份认证的目的，是**为了确认当前所声称为某种身份的用户确实是所声称的用户。**
+
+3. 不同开发模式下的身份认证
+
+   对于服务端渲染和前后端分离这两种开发模式来说，分别有着不同的身份认证方案：
+
+   1. 服务端渲染推荐使用Session认证机制
+   2. 前后端分离推荐使用JWT认证机制
+
+### 5.3 Session认证机制
+
+1. HTTP协议的无状态性
+
+   HTTP协议的无状态性，指的是客户端的每次HTTP请求都是独立的，连续多个请求之间没有直接的联系。服务器不会主动保留每次HTTP请求的状态。
+
+2. 如何突破HTTP无状态限制
+
+   ![image-20230104191322033](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20230104191322033.png)
+
+3. 什么是Cookie
+
+   Cookie是存储在用户浏览器中的一段**不超过4KB的字符串**。它由**一个名称**、**一个值**和**其他几个用于控制Cookie有效期、安全性、适用范围的可选属性组成**。
+
+   不同域名下的Cookie各自独立，每当客户端发起请求时，**会自动把当前域名下所有未过期的Cookie一同发送到服务器。**
+
+   Cookie的几大特性：
+
+   1. 自动发送
+   2. 域名独立
+   3. 过期时限
+   4. 4KB限制
+
+4. Cookie在身份认证中的作用
+
+   客户端第一次请求服务器的时候，**服务器通过响应头的形式**，向客户端发送一个身份认证的Cookie，客户端会自动把将Cookie保存在浏览器中。
+
+   随后，当客户端浏览器每次请求服务器的时候，浏览器会自动将身份认证相关的Cookie通过请求头的形式发送给服务器，服务器即可验明用户的身份。
+
+   ![image-20230104201605633](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20230104201605633.png)
+
+5. Cookie不具有安全性
+
+   由于Cookie是存储在浏览器中的，而且浏览器也提供了读写Cookie的API，因此Cookie很容易被伪造，不具有安全性。因此不建议服务器将重要的隐私数据通过Cookie的形式发送给服务器。
+
+6. 提高身份认证的安全性
+
+   为了防止客户伪造会员卡，收银员在拿到会员卡后，可以**在收银机上进行刷卡认证**。只有收银机确认存在的会员卡才能被正常使用。
+
+   ![image-20230104202359849](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20230104202359849.png)
+
+   这种**"会员卡"+"刷卡认证"**的设计理念就是Session认证机制的精髓。
+
+7. Session的工作原理
+
+   ![image-20230104202513303](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20230104202513303.png)
+
+### 5.4 在express中使用Session认证
+
+1. 安装express-session中间件
+
+   在express项目中，只需要安装express-session中间件即可在项目中使用session认证：
+
+   ```js
+   npm install express-session
+   ```
+
+2. express-session中间件安装成功后，需要通过app.use()来注册session中间件，示例代码如下：
+
+   ```js
+   // 导入express-session中间件
+   const session = require('express-session')
+   // 配置express-session中间件
+   app.use(
+     session({
+       secret: 'nonhana',
+       resave: false,
+       saveUninitialized: true
+     })
+   )
+   ```
+
+3. 当express-session中间件配置成功之后，即可通过req.session来访问和使用session对象，从而存储用户的关键信息：
+
+   ```js
+   // 登录的API接口
+   app.post('/api/login', (req, res) => {
+     if (req.body.username != 'admin' || req.body.password != '123456') {
+       return res.send({
+         status: 1,
+         msg: "登录失败"
+       })
+     }
+     // 注意：只有成功配置了express-session这个中间件之后，才能够通过req.session属性访问
+     req.session.user = req.body // 用户的信息
+     req.session.isLogin = true // 用户的登录状态
+     res.send({
+       status: 0,
+       msg: "登录成功"
+     })
+   })
+   ```
+
+4. 从session中取数据
+
+   可以直接从req.session对象上获取之前存储的数据，示例代码如下：
+
+   ```js
+   // 获取用户姓名的接口
+   app.get('/api/username', (req, res) => {
+     // 从session中获取用户的名称
+     if (!req.session.isLogin) {
+       return res.send({
+         status: 1,
+         msg: "have not logined"
+       })
+     }
+     // 成功后从session中取数据并返回
+     res.send({
+       status: 0,
+       msg: "success",
+       username: req.session.user.username
+     })
+   })
+   ```
+
+5. 清空session
+
+   调用req.session.destory()函数，即可清空服务器保存的session信息。
+
+   ```js
+   // 退出登录的接口
+   app.post('/api/logout', (req, res) => {
+     // 退出登录后调用req.session.destroy()清空session的信息
+     req.session.destroy()
+     res.send({
+       status: 0,
+       msg: "logout!"
+     })
+   })
+   ```
+
    
+
